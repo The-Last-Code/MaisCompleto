@@ -58,7 +58,7 @@ public function getpub_projeto(){
 }
 
 
-public function CadastroPub(){
+public function CadastroPub($id){
     $tit_projeto=$this->gettit_projeto();    
     $res_projeto=$this->getres_projeto();  
     $dti_projeto=$this->getdti_projeto(); 
@@ -66,7 +66,7 @@ public function CadastroPub(){
     $pub_projeto=$this->getpub_projeto(); 
 
 
-    return $this->setCadastroPub($tit_projeto,$res_projeto, $dti_projeto, $dtt_projeto, $pub_projeto);
+    return $this->setCadastroPub($tit_projeto,$res_projeto, $dti_projeto, $dtt_projeto, $pub_projeto,$id);
 }
 }
 ?>

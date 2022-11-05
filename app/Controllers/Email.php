@@ -69,6 +69,7 @@ class Email
         if (isset($_POST["novaSenha"])) 
         { 
         $novaSenha = mb_strimwidth(md5(addslashes($_POST['novaSenha'])), 0, 10);
+
         if($this->em->novaSenha($novaSenha)==true){
             echo 'deu';exit;
          }
@@ -127,9 +128,7 @@ class Email
             $mail->Subject = "Token - Recuperar Senha";
 
             $mail->Body = "<h2>Seu token para recuperar a senha é :{$this->token}</h2>";
-
-            $this->VerificaToken();
-
+            
             try {
                 $mail->send();
             } catch (Exception $e) {

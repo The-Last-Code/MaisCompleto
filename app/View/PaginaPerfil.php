@@ -16,6 +16,7 @@
   $controller->{$action}();
 
   $resultData = $_SESSION['perfil'];
+  $resultData2 = $_SESSION['perfil2'];
 ?>
 
 <!DOCTYPE html>
@@ -40,8 +41,7 @@
 
          <i><h4>Biólogo</h4></i>
          <br>
-         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur placeat aut atque quo.</p>
-    </div>
+         </div>
     <div class="right">
 
         <div class="info"> 
@@ -59,12 +59,16 @@
 
                  <div class="data">
                     <h4>Email</h4>
-                    <p>teste@gmail.com</p>
+                    <?php foreach($resultData as $data): ?> 
+                    <p><?= $data['email_cientista'] ?></p>
+                    <?php endforeach; ?> 
                  </div>
 
                  <div class="data">
-                   <h4>Telefone</h4>
-                    <p>16 99999-9999</p>
+                 <h4>Telefone</h4>
+                 <?php foreach($resultData2 as $data): ?> 
+                    <p><?= $data['ddd_telefone'].$data['num_telefone'] ?></p>
+                    <?php endforeach; ?> 
                 </div>
 
             </div>
@@ -88,9 +92,7 @@
         <div class="social_media">
             <ul>
               <div class="social_media2">
-              <li ><a class="linkedin" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-              <li><a class="twitter" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-              <li><a class="instagram" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+              <li ><a class="linkedin" href="" target="_blank"><i class="fab fa-linkedin"></i></a></li>
               </div>
               <div>
 

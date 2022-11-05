@@ -71,7 +71,7 @@ class UserPerfil extends CadastraPerfil{
     }
    
     
-    public function CadastraPerfil()
+    public function CadastraPerfil($id)
     {
         $nom_titulacao=$this->getnom_titulacao();    
         $nom_area_atuacao=$this->getnom_area_atuacao();  
@@ -82,7 +82,7 @@ class UserPerfil extends CadastraPerfil{
         $num_telefone=$this->getnum_telefone(); 
 
         return $this->setCadastroPerfil($nom_titulacao, $nom_area_atuacao, $end_rede_social, $dti_formacao,
-        $dtt_formacao, $ddd_telefone, $num_telefone);
+        $dtt_formacao, $ddd_telefone, $num_telefone,$id);
     }
 }
 

@@ -20,10 +20,13 @@ class CadastroController{
 
     $user = new User($nom_cientista, $cpf_cientista, $dtn_cientista
     ,$email_cientista, $email_alternativo_cientista, $lattes_cientista, $snh_cientista  );
-  
-    $o=$user->CadastroBanco();
-    if($o==true)
+
+    $cad=new Cadastro();
+
+    if($user->CadastroBanco()==true)
     {
+      $cad->CadastraMeia($cpf_cientista);
+      
       echo "<SCRIPT> //not showing me this
       alert('Cadastrado com sucesso')
       window.location.replace('../../app/View/LoginCadastro.php');
@@ -61,6 +64,7 @@ class CadastroController{
 
   function CadastroPub()
   {
+      session_start();
       if (isset($_POST['tit_projeto'])){
       $tit_projeto = $_POST["tit_projeto"];
       $dti_projeto = $_POST["dti_projeto"];
@@ -69,10 +73,15 @@ class CadastroController{
       $pub_projeto = $_POST["pub_projeto"];
       
       $user = new Pub($tit_projeto, $dti_projeto, $dtt_projeto,$res_projeto,$pub_projeto);
-  
-      $user->CadastroPub();
       
-      header('Location: ../View/Home.php');
+      $ob= new CadastraPerfil();
+
+      if($user->CadastroPub($_SESSION['login'])==true){
+        $ob->CadastraIdAreaAtuacao();
+        header('Location: ../View/Home.php');
+
+      }
+      
     }
   }
 
@@ -82,6 +91,7 @@ class CadastroController{
       
       if (isset($_POST['nom_titulacao']))
       {
+        session_start();
         $nom_titulacao = $_POST["nom_titulacao"];
         $nom_area_atuacao = $_POST["nom_area_atuacao"];
         $end_rede_social = $_POST["end_rede_social"];
@@ -92,7 +102,7 @@ class CadastroController{
     
       $user = new UserPerfil($nom_titulacao, $nom_area_atuacao, $end_rede_social, $dti_formacao,$ddd_telefone, $dtt_formacao, $num_telefone);
   
-      $user->CadastraPerfil();
+      $user->CadastraPerfil($_SESSION['login']);
       
       header('Location: ../View/PaginaPerfil.php');
     }
@@ -124,3 +134,5 @@ class CadastroController{
   }
 
 ?>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

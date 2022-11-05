@@ -26,38 +26,38 @@
         <div class="user-details">
 
           <div class="input-box">
-            <span class="details">Area de atuação</span>
+            <span class="details">Área de atuação</span>
             <input name="nom_titulacao" type="text" placeholder="Area de atuação" required>
           </div>
 
           <div class="input-box">
             <span class="details">Titulação</span>
-            <input name="nom_area_atuacao" type="text" placeholder="Area de atuação" required>
+            <input name="nom_area_atuacao" type="text" placeholder="Seu título" required>
           </div>
            	
           <div class="input-box">
             <span class="details">Link do linkedin</span>
-            <input name="end_rede_social" type="text" placeholder="Nome da titulação">
+            <input name="end_rede_social" type="text" placeholder="Link do seu perfil">
           </div>
 
           <div class="input-box">
-            <span class="details">Data inicio - Formação</span>
+            <span class="details">Data início - Formação</span>
             <input name="dti_formacao" type="date">
           </div>
 
           <div class="input-box">
-            <span class="details">Data termino - Formação</span>
+            <span class="details">Data término - Formação</span>
             <input name="dtt_formacao" type="date">
           </div>
 
           <div class="input-box">
             <span class="details" for="telefone">DDD</span>
-            <input  type="text" name="ddd_telefone" id="telefone" placeholder="DDD" maxlength="15">
+            <input  type="text" name="ddd_telefone"  placeholder="DDD" maxlength="2">
           </div>
 
           <div class="input-box">
-            <span class="details" for="telefone">Numero de telefone</span>
-            <input  type="text" name="num_telefone" id="telefone" placeholder="Digite um número de telefone" maxlength="15">
+            <span class="details" for="telefone">Número de telefone</span>
+            <input class="input-field"  type="tel" name="num_telefone" placeholder="Digite um número de telefone" maxlength="9">
           </div>
         </div>
         <div class="button">

@@ -38,7 +38,6 @@ require_once '../Conection/Conn.php';
 
             if($sql->rowCount() > 0)
             { 
-    
                 session_start();
                 $_SESSION['login'] = $value;
                 return true; 

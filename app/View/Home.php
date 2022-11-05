@@ -1,6 +1,5 @@
 <?php
     session_start();
-
     if (empty($_SESSION["login"]))
     {
       header('location: LoginCadastro.php');
@@ -213,20 +212,6 @@
             }
         }
         </script>
-
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="?pg=<?=$anterior?>" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="?pg=1">1</a></li>
-          <li class="page-item"><a class="page-link" href="?pg=2">2</a></li>
-          <li class="page-item"><a class="page-link" href="?pg=3">3</a></li>
-          <li class="page-item"></li>
-            <a class="page-link" href="?pg=<?=$proximo?>">Next</a>
-          </li>
-        </ul>
-    </nav>
     </main>
 
     <script src="./bootstrap/app/Views/bootstrap/js/bootstrap.bundle.min.js"></script>

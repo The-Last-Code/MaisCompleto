@@ -13,7 +13,7 @@ require_once '../Conection/Conn.php';
         public function setCadastroBanco($nom_cientista, $cpf_cientista, $dtn_cientista, $email_cientista,
         $email_alternativo_cientista, $lattes_cientista, $snh_cientista)
         {
-         
+           
             $pdo = new PDO('mysql:host='.HOST.';dbname='.DATABASENAME,USER,PASSWORD);
 
             $sql = $pdo->prepare("SELECT *FROM cientista
@@ -45,15 +45,35 @@ require_once '../Conection/Conn.php';
                 $sql->bindValue(":f", $lattes_cientista);
                 $sql->bindValue(":g", $snh_cientista);
                 $sql->execute();
-                return true;
-                 
+                return true; 
+                
             }
             return false;
             }
-            
-           
-        }
-        
-    
 
+            public function CadastraMeia($cpf_cientista)
+            {   
+                $pdo = new PDO('mysql:host='.HOST.';dbname='.DATABASENAME,USER,PASSWORD);
+                
+                $sql_id = $pdo->prepare(("SELECT id_cientista FROM cientista WHERE cpf_cientista = :b"));
+                $sql_id->bindValue(":b", $cpf_cientista);
+                $sql_id->execute();
+
+                $id = $sql_id->fetch(PDO::FETCH_ASSOC);
+                    
+                ksort($id);
+                foreach ($id as $chave => $value)
+                {
+                    $id_cientista = $value;
+                }
+                
+                session_start();
+                $_SESSION['CadastroArea']=$value;
+                
+                $sql = $pdo->prepare("INSERT INTO area_atuacao_cientista (fk_id_cientista) VALUES (:a)");
+                $sql->bindValue(":a", $value);
+                $sql->execute();
+                
+            }
+        }
 ?>

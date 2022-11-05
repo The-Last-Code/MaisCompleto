@@ -15,9 +15,8 @@
 
     function getAll()
     {
-        $resultData = $this->model->getAll();
+        $resultData = $this->model->getAll($_SESSION['login']);
         $_SESSION['var'] = $resultData;
-        //require_once('../Views/index.php');
     }
 }
 ?>
