@@ -21,12 +21,9 @@ class CadastroController{
     $user = new User($nom_cientista, $cpf_cientista, $dtn_cientista
     ,$email_cientista, $email_alternativo_cientista, $lattes_cientista, $snh_cientista  );
 
-    $cad=new Cadastro();
-
     if($user->CadastroBanco()==true)
     {
-      $cad->CadastraMeia($cpf_cientista);
-      
+      $user->CadastraCpf($cpf_cientista);
       echo "<SCRIPT> //not showing me this
       alert('Cadastrado com sucesso')
       window.location.replace('../../app/View/LoginCadastro.php');
@@ -47,17 +44,14 @@ class CadastroController{
     if (isset($_POST['cpf_cientista'])){
       $nom_cientista = $_POST["cpf_cientista"];
       $snh_cientista = mb_strimwidth(md5(addslashes($_POST['snh_cientista'])), 0, 10);
+    
       $log=new Login();
-
-      $o=$log->Login($nom_cientista,$snh_cientista);
-         if($o==true){
+         if($log->Login($nom_cientista,$snh_cientista)==true)
+         {
            header('Location: ../View/Home.php');
          }
          else{
-           echo "<SCRIPT> //not showing me this
-           alert('Senha ou CPF incorreto')
-           window.location.replace('../../app/View/LoginCadastro.php');
-       </SCRIPT>";
+           echo "<SCRIPT> //not showing me this alert('Senha ou CPF incorreto') window.location.replace('../../app/View/LoginCadastro.php'); </SCRIPT>";
          }
      }
   }
@@ -74,14 +68,12 @@ class CadastroController{
       
       $user = new Pub($tit_projeto, $dti_projeto, $dtt_projeto,$res_projeto,$pub_projeto);
       
-      $ob= new CadastraPerfil();
-
-      if($user->CadastroPub($_SESSION['login'])==true){
-        $ob->CadastraIdAreaAtuacao();
-        header('Location: ../View/Home.php');
-
-      }
       
+
+      if($user->CadastroPub($_SESSION['login'])==true)
+      {
+        header('Location: ../View/Home.php');
+      }
     }
   }
 
@@ -101,8 +93,10 @@ class CadastroController{
         $num_telefone = $_POST["num_telefone"];
     
       $user = new UserPerfil($nom_titulacao, $nom_area_atuacao, $end_rede_social, $dti_formacao,$ddd_telefone, $dtt_formacao, $num_telefone);
-  
+      
+      $ob= new CadastraPerfil();
       $user->CadastraPerfil($_SESSION['login']);
+      //$ob->CadastraIdAreaAtuacao();
       
       header('Location: ../View/PaginaPerfil.php');
     }

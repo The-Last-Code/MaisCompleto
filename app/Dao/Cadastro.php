@@ -2,22 +2,25 @@
 //echo ("Cadastro");
 require_once '../Conection/Conn.php';
 
-    class Cadastro{
+    class Cadastro
+    {
         
-        public $msgErro = "";   
+        public $msgErro = ""; 
 
-        public function __construct(){
-
+        private $tableCientista;
+        private $tableArea_atuacao_cientista;
+        
+        function __construct(){
+             $this->tableCientista ='cientista';
+             $this->tableArea_atuacao_cientista = 'area_atuacao_cientista';
         }
                                               
-        public function setCadastroBanco($nom_cientista, $cpf_cientista, $dtn_cientista, $email_cientista,
+        function setCadastroBanco($nom_cientista, $cpf_cientista, $dtn_cientista, $email_cientista,
         $email_alternativo_cientista, $lattes_cientista, $snh_cientista)
         {
-           
             $pdo = new PDO('mysql:host='.HOST.';dbname='.DATABASENAME,USER,PASSWORD);
 
-            $sql = $pdo->prepare("SELECT *FROM cientista
-
+            $sql = $pdo->prepare("SELECT *FROM $this->tableCientista
             WHERE cpf_cientista = :b");
             $sql->bindValue(":b", $cpf_cientista);
             $sql->execute();
@@ -33,7 +36,7 @@ require_once '../Conection/Conn.php';
             else
             {
                 //caso não, cadastrar   
-                $sql = $pdo->prepare("INSERT INTO cientista (nom_cientista, cpf_cientista, dtn_cientista, 
+                $sql = $pdo->prepare("INSERT INTO $this->tableCientista (nom_cientista, cpf_cientista, dtn_cientista, 
                 email_cientista, email_alternativo_cientista, lattes_cientista, snh_cientista) 
                 VALUES (:a, :b, :c, :d, :e, :f, :g)");
 
@@ -51,11 +54,11 @@ require_once '../Conection/Conn.php';
             return false;
             }
 
-            public function CadastraMeia($cpf_cientista)
+            public function CadastraCpf($cpf_cientista)
             {   
                 $pdo = new PDO('mysql:host='.HOST.';dbname='.DATABASENAME,USER,PASSWORD);
                 
-                $sql_id = $pdo->prepare(("SELECT id_cientista FROM cientista WHERE cpf_cientista = :b"));
+                $sql_id = $pdo->prepare(("SELECT id_cientista FROM  $this->tableCientista WHERE cpf_cientista = :b"));
                 $sql_id->bindValue(":b", $cpf_cientista);
                 $sql_id->execute();
 

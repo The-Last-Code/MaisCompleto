@@ -1,14 +1,19 @@
 <?php
 
 require_once '../Conection/Conn.php';
-    class CadastraPub{
+    class CadastraPub extends Conn{
+        private $tableProjeto;
+        
+        public function __construct()
+        {
+            parent::__construct();
+            $this->tableProjeto ='projeto';
+        }
 
         public function setCadastroPub($tit_projeto, $dti_projeto, $dtt_projeto,$res_projeto, $pub_projeto, $id)
         {
-    
-            $pdo = new PDO('mysql:host='.HOST.';dbname='.DATABASENAME,USER,PASSWORD);
-
-                $sql = $pdo->prepare("INSERT INTO projeto (tit_projeto,dti_projeto,dtt_projeto,res_projeto,pub_projeto, fk_id_cientista
+                $sql = $this->pdo->prepare("INSERT INTO $this->tableProjeto(tit_projeto,dti_projeto,dtt_projeto
+                ,res_projeto,pub_projeto, fk_id_cientista)
                 VALUES (:a, :b,:c,:d,:e, :f)");
 
                 $sql->bindValue(":a", $tit_projeto);

@@ -4,24 +4,24 @@
 
     class ClientModel extends Conn
     {
-        private $table;
+        private $tableProjeto;
 
         function __construct()
         {
             parent::__construct();
-            $this->table = 'projeto';
+            $this->tableProjeto = 'projeto';
         }
 
         function getAll()
         {
-             $sql = "SELECT * FROM  $this->table";
-             $query = $this->pdo->prepare($sql);
-             $query->execute();
-             return $query;
-        }       
+            $sqlSelect = $this->pdo->query("SELECT * FROM $this->tableProjeto");
+            $sqlSelect ->execute();
+            return $sqlSelect;        
+        }     
+          
         function getUser($id)
         {
-            $sql = "SELECT * FROM  $this->table WHERE fk_id_cientista = $id";
+            $sql = "SELECT * FROM $this->tableProjeto WHERE fk_id_cientista = $id";
             $query = $this->pdo->prepare($sql);
             $query->execute();
             return $query;

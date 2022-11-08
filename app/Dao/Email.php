@@ -5,18 +5,19 @@ include ('../Conection/Conn.php');
     // email do caboca
     class EnviarEmail extends Conn
     {
+        private $tableCientista;
 
         function __construct()
         {
             parent::__construct();
-            $this->table = 'cientista';
+            $this->tableCientista = 'cientista';
         }
 
         
         
         function verificaEmail($recuperaEmail)
         {
-            $sqlSelect = $this->pdo->query("SELECT * FROM  $this->table WHERE email_cientista = '$recuperaEmail'");
+            $sqlSelect = $this->pdo->query("SELECT * FROM  $this->tableCientista WHERE email_cientista = '$recuperaEmail'");
             $sqlSelect ->execute();
 
             if($sqlSelect->rowCount() > 0)
@@ -31,10 +32,10 @@ include ('../Conection/Conn.php');
 
         function token($token, $recuperaEmail)
         {
-            $sqlSelect = $this->pdo->query("UPDATE cientista SET snh_cientista = '$token' WHERE email_cientista = '$recuperaEmail'");
+            $sqlSelect = $this->pdo->query("UPDATE $this->tableCientista SET snh_cientista = '$token' WHERE email_cientista = '$recuperaEmail'");
             $sqlSelect ->execute();
 
-            $sqlSelect = $this->pdo->query("SELECT * FROM cientista WHERE snh_cientista = '$token'");
+            $sqlSelect = $this->pdo->query("SELECT * FROM $this->tableCientista WHERE snh_cientista = '$token'");
             $sqlSelect ->execute();
 
             if($sqlSelect->rowCount() > 0)
@@ -50,7 +51,7 @@ include ('../Conection/Conn.php');
         /* funcao que verifica se o token que o usuario digitou esta correto no banco */
         function verificaToken($tokenUsuario)
         {
-            $sqlSelect = $this->pdo->query("SELECT * FROM  $this->table WHERE snh_cientista = '$tokenUsuario'");
+            $sqlSelect = $this->pdo->query("SELECT * FROM  $this->tableCientista WHERE snh_cientista = '$tokenUsuario'");
             $sqlSelect ->execute();
 
             
@@ -67,10 +68,10 @@ include ('../Conection/Conn.php');
         /* funcao que coloca a nova senha que o usuario digitou no banco */
         function novaSenha($novaSenha)
         {
-            $sqlSelect = $this->pdo->query("UPDATE cientista SET snh_cientista = '$novaSenha' WHERE id_cientista = (SELECT MAX(id_cientista) FROM cientista)");
+            $sqlSelect = $this->pdo->query("UPDATE $this->tableCientista SET snh_cientista = '$novaSenha' WHERE id_cientista = (SELECT MAX(id_cientista) FROM cientista)");
             $sqlSelect ->execute();
 
-            $sqlSelect = $this->pdo->query("SELECT * FROM cientista WHERE snh_cientista = '$novaSenha'");
+            $sqlSelect = $this->pdo->query("SELECT * FROM $this->tableCientista WHERE snh_cientista = '$novaSenha'");
             $sqlSelect ->execute();
 
             

@@ -9,6 +9,7 @@ class UserPerfil extends CadastraPerfil{
     private $ddd_telefone;
     private $dtt_formacao;
     private $num_telefone;
+    private $CadastraPer;
 
     public function __construct($nom_titulacao, $nom_area_atuacao, $end_rede_social, $dti_formacao,
     $ddd_telefone,$dtt_formacao ,$num_telefone)
@@ -20,7 +21,7 @@ class UserPerfil extends CadastraPerfil{
         $this->ddd_telefone = $ddd_telefone;
         $this->dtt_formacao = $dtt_formacao;
         $this->num_telefone = $num_telefone;
-
+        $this->CadastraPer=new CadastraPerfil();
     }
 
     //Metodos Set
@@ -73,16 +74,9 @@ class UserPerfil extends CadastraPerfil{
     
     public function CadastraPerfil($id)
     {
-        $nom_titulacao=$this->getnom_titulacao();    
-        $nom_area_atuacao=$this->getnom_area_atuacao();  
-        $end_rede_social=$this->getend_rede_social(); 
-        $dti_formacao=$this->getdti_formacao(); 
-        $dtt_formacao=$this->getdtt_formacao();  
-        $ddd_telefone=$this->getddd_telefone(); 
-        $num_telefone=$this->getnum_telefone(); 
-
-        return $this->setCadastroPerfil($nom_titulacao, $nom_area_atuacao, $end_rede_social, $dti_formacao,
-        $dtt_formacao, $ddd_telefone, $num_telefone,$id);
+        return $this->CadastraPer->setCadastroPerfil($this->getnom_titulacao(), $this->getnom_area_atuacao(),
+        $this->getend_rede_social(), $this->getdti_formacao(),
+        $this->getdtt_formacao(), $this->getddd_telefone(), $this->getnum_telefone(),$id);
     }
 }
 

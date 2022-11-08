@@ -2,14 +2,14 @@
 include '../Dao/CadastraPub.php';
 
 
-class Pub extends CadastraPub{
+class Pub{
 
 private $tit_projeto;
 private $res_projeto;
 private $dti_projeto;
 private $dtt_projeto;
 private $pub_projeto;
-
+private $CadastraPubli;
 
 
 public function __construct($tit_projeto, $res_projeto, $dti_projeto,$dtt_projeto,$pub_projeto)
@@ -19,6 +19,7 @@ public function __construct($tit_projeto, $res_projeto, $dti_projeto,$dtt_projet
     $this->dti_projeto = $dti_projeto;
     $this->dtt_projeto = $dtt_projeto;
     $this->pub_projeto = $pub_projeto;
+    $this->CadastraPubli=new CadastraPub();
 }
 
 //Metodos Set
@@ -59,14 +60,9 @@ public function getpub_projeto(){
 
 
 public function CadastroPub($id){
-    $tit_projeto=$this->gettit_projeto();    
-    $res_projeto=$this->getres_projeto();  
-    $dti_projeto=$this->getdti_projeto(); 
-    $dtt_projeto=$this->getdtt_projeto(); 
-    $pub_projeto=$this->getpub_projeto(); 
-
-
-    return $this->setCadastroPub($tit_projeto,$res_projeto, $dti_projeto, $dtt_projeto, $pub_projeto,$id);
-}
+    
+    return $this->CadastraPubli->setCadastroPub($this->gettit_projeto(),$this->getres_projeto(), 
+    $this->getdti_projeto(), $this->getdtt_projeto(), $this->getpub_projeto(),$id);
+}  
 }
 ?>

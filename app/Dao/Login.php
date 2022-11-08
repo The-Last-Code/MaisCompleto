@@ -2,12 +2,13 @@
 require_once '../Conection/Conn.php';
 
 
-    class Login{
+    class Login {
         
         public $msgErro = "";   
+        private $tableCientista;
 
         public function __construct(){
-           
+            $this->tableCientista = 'cientista';
         }
                                               
         public function Login($cpf_cientista, $snh_cientista)
@@ -22,19 +23,17 @@ require_once '../Conection/Conn.php';
             $sql->bindValue(":g", $snh_cientista);
             $sql->execute();
 
-            $sql_id = $pdo->prepare(("SELECT id_cientista FROM cientista WHERE cpf_cientista = :b; "));
-            $sql_id->bindValue(":b", $cpf_cientista);
-            $sql_id->execute();
+            $sql = $pdo->prepare(("SELECT id_cientista FROM cientista WHERE cpf_cientista = :b; "));
+            $sql->bindValue(":b", $cpf_cientista);
+            $sql->execute();
 
-            $id = $sql_id->fetch(PDO::FETCH_ASSOC);
+            $id = $sql->fetch(PDO::FETCH_ASSOC);
             
             ksort($id);
             foreach ($id as $chave => $value)
             {
                $id_cientista = $value;
             }
-
-
 
             if($sql->rowCount() > 0)
             { 
