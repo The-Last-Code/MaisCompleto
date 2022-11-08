@@ -377,6 +377,13 @@ main.sign-up-mode .carousel {
     padding: 1rem;
   }
 
+  
+  .text-group > h2
+  {
+    font-size: 0.8rem !important;
+  }
+
+
   .box {
     border-radius: 2rem;
   }

@@ -1,26 +1,3 @@
-<?php
-  session_start();
-  if (empty($_SESSION["login"])) {
-    header('location: LoginCadastro.php');
-    session_destroy();
-  }
-
-
-  include('../Dao/Client.php');
-  require_once('../Controllers/clientsController.php');
-  require_once('../Conection/Conn.php');
-
-  $controller = new clientsController();
-
-  $action = !empty($_GET['a']) ? $_GET['a'] : 'getAll';
-
-  $controller->{$action}();
-
-  $resultData = $_SESSION['var'];
-
-
-?>
-
 <!DOCTYPE html>
 <!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
 <html lang="en" dir="ltr">
@@ -28,12 +5,11 @@
 <head>
   <meta charset="UTF-8">
   <title> Scilink - Plataforma de Cientistas</title>
-  <link rel="stylesheet" href="./style/styleDash.css">
+  <link rel="stylesheet" href="./style/stylepubli.css">
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/jpg" href="../View/img/logo.png" />
-
 </head>
 
 <body>
@@ -74,9 +50,8 @@
         </a>
       </li>
     </ul>
+
   </div>
-
-
 
   <section class="home-section">
     <nav>
@@ -109,25 +84,49 @@
 
 
 
-    <a href="Pub.php">
-      <?php while($data = $resultData->fetch(PDO::FETCH_ASSOC)){  ?> 
-      <table border="0">
-        <tr>
-          <td class="info">
-            <h3 style="text-decoration: none; color: #000000;"><?= $data['tit_projeto'] ?></h3>
-            <p><b></b> Autor: Gabriel Lamarca</p>
-            <p>• Biólogo Marinho</p>
-          </td>
-          <td class="espaco"></td>
-          <td class="data">
-            <p>Início do Projeto: <?= $data ['dti_projeto'] ?></p>
-            <p>Término do Projeto: <?= $data ['dtt_projeto'] ?></p>
 
-          </td>
-        </tr>
-      </table>
-      <?php }?>
-    </a>
+    <table border="0">
+      <tr>
+        <td class="titulo">
+          <h3>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam corporis similique consequuntur aliquam!</h3>
+        </td>
+      </tr>
+      <tr>
+        <td class="info">
+          <p>Início do Projeto: 00/00/0000</p>
+          <p>Início do Projeto: 00/00/0000</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="resumo">
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis fugiat incidunt pariatur asperiores voluptatem architecto quod ullam ipsam tempora provident, et voluptates amet expedita doloribus perferendis veritatis dolores laborum recusandae! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis fugiat incidunt pariatur asperiores voluptatem architecto quod ullam ipsam tempora provident, et voluptates amet expedita doloribus perferendis veritatis dolores laborum recusandae!</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="pessoa">
+
+          <div class="info-pessoa">
+            <p> Gabriel Lamarca • Biólogo Marinho </p>
+            <div class="redes">
+              <div class="linkedin">
+                <img src="./img/bxl-linkedin.svg" alt="Linkedin logo">
+                <p> Gabriel Lamarca Galdino da Silva </p>
+              </div>
+              <div class="email">
+                <img src="./img/bx-envelope.svg" alt="email logo">
+                <p> g.lamarca@outlook.com </p>
+              </div>
+            </div>
+          </div>
+          <div class="botoesMinhasPubli">
+            <a href="#" class="botaoEdit">Editar</a>
+            <a href="#" class="botaoDel">Apagar</a>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+
   </section>
 
 
@@ -170,12 +169,8 @@
   </div>
 
 
-</body>
 
-</html>
-
-
-<script>
+  <script>
     let sidebar = document.querySelector(".sidebar");
     let sidebarBtn = document.querySelector(".sidebarBtn");
     sidebarBtn.onclick = function() {
@@ -186,29 +181,7 @@
         sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
     }
   </script>
-<script>
-  // JavaScript code
-  function search_animal() {
-    let input = document.getElementById('searchbar').value
-    input = input.toLowerCase();
-    let x = document.getElementsByClassName('pub');
 
-    for (i = 0; i < x.length; i++) {
-      if (!x[i].innerHTML.toLowerCase().includes(input)) {
-        x[i].style.display = "none";
-      } else {
-        x[i].style.display = "table";
-      }
-    }
-  }
-</script>
-</main>
-
-<script src="./bootstrap/app/Views/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-<script src="./bootstrap/app/Views/bootstrap/js/jquery-3.5.1.js"></script>
-<script src="./bootstrap/app/Views/bootstrap/js/jquery.dataTables.min.js"></script>
-<script src="./bootstrap/app/Views/bootstrap/js/dataTables.bootstrap5.min.js"></script>
-<script src="./bootstrap/app/Views/bootstrap/js/script.js"></script>
 </body>
-</php>
+
+</html>

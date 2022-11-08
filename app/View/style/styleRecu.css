@@ -229,7 +229,7 @@ label {
 
 
 .sign-btn:hover {
-  background-color: #0ae47d;
+  opacity: 80%;
 }
 
 .text {
@@ -451,4 +451,22 @@ main.sign-up-mode .carousel {
   form {
     padding: 1rem 2rem 1.5rem;
   }
+}
+
+.resetar,.botao{
+  margin-bottom: 10px;
+  display: inline-block;
+  width: 100%;
+  height: 43px;
+  background-color: #07ce60;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  font-size: 0.8rem;
+  transition: 0.3s all ease;
+}
+
+.resetar:hover, .botao:hover{
+	opacity: 80%;
 }

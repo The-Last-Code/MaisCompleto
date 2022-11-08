@@ -21,7 +21,19 @@ toggle_btn.forEach((btn) => {
   });
 });
 
+setInterval( function(){
+  moveSlider();
+}, 20)
+
+let count = 1;
 function moveSlider() {
+  count++;
+
+  if(count>4)
+  {
+    count = 1
+  }
+
   let index = this.dataset.value;
 
   let currentImage = document.querySelector(`.img-${index}`);

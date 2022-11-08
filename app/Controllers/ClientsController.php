@@ -15,7 +15,7 @@
 
     function getAll()
     {
-        $resultData = $this->model->getAll($_SESSION['login']);
+        $resultData = $this->model->getAll();
         $_SESSION['var'] = $resultData;
     }
 }
